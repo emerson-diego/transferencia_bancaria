@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: banco_db
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"

@@ -1,0 +1,9 @@
+Trabalho Extra no NoSQL
+Para contornar a falta de ACID no MongoDB, você teria que:
+
+1. Implementar uma lógica de compensação: Após a falha, verificar os saldos e reverter manualmente o débito na conta A.
+
+2. Usar transações multi-documento (disponíveis apenas em versões recentes do MongoDB, como 4.0+), o que adiciona complexidade e não é padrão em todos os NoSQL.
+
+3. Adicionar controle de estado: Criar um log de operações para rastrear e corrigir inconsistências.
+
