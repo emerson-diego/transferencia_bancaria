@@ -1,28 +1,32 @@
-Protótipo de Transferência Bancária: SQL vs NoSQL
+# Protótipo de Transferência Bancária: SQL vs NoSQL
+
 Este protótipo demonstra a superioridade dos bancos de dados SQL em garantir a integridade dos dados em transações críticas, em comparação aos bancos NoSQL. Usamos uma simulação de transferência bancária com falha intencional para evidenciar como o SQL preserva a consistência automaticamente, enquanto o NoSQL exige esforço adicional para lidar com inconsistências.
 
-Pré-requisitos
-Docker e Docker Compose
+## Pré-requisitos
 
-Docker
-Docker Compose
-Python 3.8+
+Para executar este protótipo, você precisará das seguintes ferramentas instaladas:
 
-Download Python
-uv (gerenciador de pacotes Python)
+- **Docker e Docker Compose**
+  - [Docker](https://www.docker.com/get-started)
+  - [Docker Compose](https://docs.docker.com/compose/install/)
+- **Python 3.8+**
+  - [Download Python](https://www.python.org/downloads/)
+- **uv (gerenciador de pacotes Python)**
+  - [Repositório do uv](https://github.com/astral-sh/uv)
+  - **Dica:** Se você ainda não possui o uv instalado, instale-o globalmente utilizando o pip:
+    ```bash
+    pip install uv
+    ```
 
-Repositório do uv
-Dica: Se você ainda não possui o uv instalado, instale-o globalmente utilizando o pip:
+## Passos para Rodar a Aplicação
 
-bash
-Copiar
-pip install uv
-Passos para Rodar a Aplicação
-1. Subir os Bancos de Dados com Docker Compose
-No diretório raiz do projeto, certifique-se de que o arquivo docker-compose.yml contém a seguinte configuração:
+Siga os passos abaixo para configurar e executar o protótipo:
 
-yaml
-Copiar
+### 1. Subir os Bancos de Dados com Docker Compose
+
+No diretório raiz do projeto, certifique-se de que o arquivo `docker-compose.yml` contém a seguinte configuração:
+
+```yaml
 version: '3.8'
 
 services:
@@ -39,50 +43,56 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+```
+
 Em seguida, execute o comando abaixo para iniciar os containers:
 
-bash
-Copiar
+```bash
 docker-compose up -d
-Isso iniciará dois containers:
+```
 
+Isso iniciará dois containers:
 PostgreSQL (SQL) na porta 5432
+
 MongoDB (NoSQL) na porta 27017
+
 Observação: Verifique se os containers estão ativos com:
 
-bash
-Copiar
+```bash
 docker ps
-2. Criar o Ambiente Virtual com uv
+```
+
+### 2. Criar o Ambiente Virtual com uv
 No diretório do projeto, crie um ambiente virtual utilizando o uv:
 
-bash
-Copiar
+```bash
 uv venv
-3. Instalar as Dependências Python
-Com o ambiente virtual criado, instale as bibliotecas necessárias (psycopg2-binary e pymongo) utilizando o uv:
+```
 
-bash
-Copiar
-uv pip install psycopg2-binary pymongo
-4. Ativar o Ambiente Virtual
-Ative o ambiente virtual criado para que os comandos e pacotes sejam executados corretamente:
+### 3. Ativar o Ambiente Virtual
+Ative o ambiente virtual criado para garantir que os comandos e pacotes sejam executados corretamente:
+
 
 Linux/macOS:
-
-bash
-Copiar
+```bash
 source .venv/bin/activate
+```
+
 Windows:
-
-bash
-Copiar
+```bash
 .venv\Scripts\activate
-5. Executar a Aplicação
-Com o ambiente virtual ativo e os containers do Docker rodando, execute o script principal da aplicação. Supondo que o arquivo principal seja bank_transfer.py, execute:
+```
 
-bash
-Copiar
-uv run python bank_transfer.py
-Você deverá ver a execução dos testes para ambas as estratégias (SQL e NoSQL) com os saldos iniciais e após a tentativa de transferência com falha simulada.
+### 4. Instalar as Dependências Python
+Com o ambiente virtual ativo, instale as bibliotecas necessárias (psycopg2-binary e pymongo) utilizando o uv:
 
+```bash
+uv pip install psycopg2-binary pymongo
+```
+
+### 5. Executar a Aplicação
+Com o ambiente virtual ativo e os containers do Docker rodando, execute o script principal da aplicação:
+
+```bash
+uv run python main.py
+```
