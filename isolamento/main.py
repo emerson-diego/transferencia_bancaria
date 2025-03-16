@@ -7,6 +7,8 @@ if __name__ == "__main__":
     saldo_inicial_b = 100.0
     valor_transferencia = 50.0
 
+    # Teste de Isolamento
+
     print("=== Usando SQL (PostgreSQL) ===")
     estrategia_sql = EstrategiaSQL()
     contexto_sql = ContextoBanco(estrategia_sql)

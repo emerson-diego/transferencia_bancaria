@@ -1,7 +1,7 @@
 
 from estrategia_banco import EstrategiaBancoDados
 
-
+# Contexto que utiliza a estratégia de banco de dados
 class ContextoBanco:
     def __init__(self, estrategia: EstrategiaBancoDados):
         self.estrategia = estrategia

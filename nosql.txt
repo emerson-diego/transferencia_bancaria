@@ -7,3 +7,4 @@ Para contornar a falta de ACID no MongoDB, você teria que:
 
 3. Adicionar controle de estado: Criar um log de operações para rastrear e corrigir inconsistências.
 
+No caso de controle de integridade, não há escapatória. Não há restrições de integridade (como CHECK ou FOREIGN KEY) aplicadas automaticamente pelo banco, como acontece em bancos relacionais. Devem ser efetuadas checagens manuais.
