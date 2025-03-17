@@ -43,6 +43,7 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
+    command: ["mongod", "--replSet", "rs0"]
 ```
 
 Em seguida, execute o comando abaixo para iniciar os containers:
@@ -60,6 +61,23 @@ Observação: Verifique se os containers estão ativos com:
 
 ```bash
 docker ps
+```
+
+Agora, é necessário ativar o modo réplica do mongoDB para que o suporte a transações multi-documentos seja possível
+
+```bash
+docker exec -it <id_do_container> mongosh
+```
+
+```bash
+rs.initiate()
+rs.config()
+rs.reconfig({
+    _id: "rs0",
+    members: [
+        { _id: 0, host: "localhost:27017" } #altera o replica set para usar localhost
+    ]
+})
 ```
 
 ### 2. Criar o Ambiente Virtual com uv
